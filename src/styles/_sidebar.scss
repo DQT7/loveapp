@@ -1,0 +1,17 @@
+.lightWork{
+    background-color:rgb(223, 211, 211);
+    // position:Fixed;
+    z-index: 3;
+    color:rgb(252, 249, 249);
+    text-shadow: 1px 1px rgb(78, 2, 2);
+    font-family: Cursive;
+  
+    opacity:.9;
+    filter: alpha(opacity=50);
+}
+body:hover{
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+
+
+   }

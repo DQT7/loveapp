@@ -3,13 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "aframe": "^0.7.1",
+    "aframe-animation-component": "^4.0.0-beta9",
+    "aframe-particle-system-component": "^1.0.11",
+    "aframe-react": "^4.3.0",
+    "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.0.0",
+    "lodash": "^4.17.4",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
+    "react-codepen": "^0.1.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.1"
+    "react-icons": "^2.2.7",
+    "react-router-dom": "^4.2.2",
+    "react-spinners": "^0.2.5",
+    "reactstrap": "^5.0.0-alpha.4",
+    "styled-components": "^3.1.6",
+    "youtube-api-search": "0.0.5"
+  },
+  "devDependencies": {
+    "react-scripts": "^1.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

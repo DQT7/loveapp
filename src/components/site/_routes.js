@@ -12,5 +12,6 @@ export const routes = [
       path: '/resources',
       exact: true,
       main: () => <Resources />
-  },
+  }
+  
 ]

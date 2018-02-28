@@ -8,12 +8,13 @@ import styled from 'styled-components';
 // `
 class Home extends React.Component {
   constructor() {
+          input: '/* add your jsx here */',
       super();
       this.state = {
-          input: '/* add your jsx here */',
           output: '',
           err: ''
-      }
+      };
+
   }
   update(e) {
     let code = e.target.value;
@@ -23,10 +24,10 @@ class Home extends React.Component {
                 .transform(code, { presets: ['es2015', 'react'] })
                 .code,
             err: ''
-        })
+        });
     }
     catch (err) {
-        this.setState({ err: err.message })
+        this.setState({ err: err.message });
     }
 }
 
@@ -47,7 +48,7 @@ class Home extends React.Component {
       {/* <img src='https://images.unsplash.com/photo-1515871204537-49a5fe66a31f?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a8e0a0bcf73f65a1ecfdb9b97ec7204c&auto=format&fit=crop&w=1948&q=80'className="bigPic"/> */}
      
         
-        <p className="lead">Use this app as a way to manage and criticlly analyze your relationship.<br/><p>Hard conversations always start with your self.</p>
+        <p className="lead">Use this app as a way to manage and critically analyze your relationship.<br/><p>Hard conversations always start with your self.</p>
         </p>
        <p className="lead"></p>
        

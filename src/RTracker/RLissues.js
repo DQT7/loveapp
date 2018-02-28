@@ -1,4 +1,6 @@
 import React from 'react'
+
+import { Container, Row, Col } from 'reactstrap';
 import {Button,Form,FormGroup,Label,Input}from 'reactstrap';
 
 class RLissues extends React.Component {
@@ -7,9 +9,9 @@ class RLissues extends React.Component {
         super(props)
 
         this.state = {
-            result: '',
-            description: '',
-            futureChanges: ''
+            problems: "",
+            solutions: ""
+         
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -27,50 +29,61 @@ class RLissues extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        fetch("http://localhost:3000/api/log", {
+        fetch("http://localhost:3000/api/rsi", {
             method: 'POST',
-            body: JSON.stringify({ log: this.state }),
+            body: JSON.stringify({ rsi: this.state }),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token
+                'Authorization': localStorage.getItem('token')
             })
         })
             .then((res) => res.json())
-            .then((logData) => {
-                this.props.updateRLissuesArray()
+            .then((rsiData) => {
+                // console.log(this.props)
+                // this.props.updateRLissuesArray()
                 // this is where you would clear out the fields 
             })
     }
+   
 
     render() {
         return (
-            <div>
-                <h3>Relationship Issues</h3>
-                <hr />
-                <Form onSubmit={this.handleSubmit} >
-                    {/* result */}
-                    <FormGroup>
-                        <Label for="result">Result</Label>
-                        <Input id="result" type="text" name="result" placeholder="enter result" onChange={this.handleChange} />
-                    </FormGroup>
-                    {/* definition */}
-                    <FormGroup>
-                        <Label for="def">Type</Label>
-                        <Input type="select" name="def" id="def" onChange={this.handleChange} placeholder="Type">
-                            <option></option>
-                            <option value="Time"></option>
-                        on>    <option value="Weight"></option>
-                            <option value="Distance"></option>
-                        </Input>
-                    </FormGroup>
-                    {/* description */}
-                    <FormGroup>
-                        <Label for="description">Notes</Label>
-                        <Input id="description" type="text" name="description" placeholder="enter description" onChange={this.handleChange} />
-                    </FormGroup>
-                    <Button type="submit" color="primary"> Submit </Button>
-                </Form>
-            </div>
+            <Container>
+                <Row>
+                    <div className="">
+                        <h3>Relationship Issues</h3>
+                        <hr />
+               
+                        <Form onSubmit={this.handleSubmit} >
+                            {/* result */}
+                            <Col xl="6" xl="6"> 
+                                <FormGroup>
+                                    <Label for="problems">Result</Label>
+                                    <Input id="problems" type="text" name="problems" placeholder="enter result" onChange={this.handleChange} />
+                                </FormGroup>
+                                {/* definition */}
+                            </Col>
+                            <Col xl="6" xl="6">
+                                <FormGroup>
+                                    <Label for="problems">Type</Label>
+                                    <Input type="select"    name="problems" id="problems" onChange={this.handleChange} placeholder="Type">
+                                        <option></option>
+                                        <option value="">Money</option>
+                                        <option value="">Intimacy</option>
+                                        <option value="">Family Members</option>
+                                   </Input>
+                                </FormGroup>
+                                {/* description */}
+                                <FormGroup>
+                                    <Label for="solutions">Foundation</Label>
+                                    <Input id="solutions" type="text" name="solutions" placeholder="enter description" onChange={this.handleChange} />
+                                </FormGroup>
+                                <Button type="submit" color="primary"> Submit </Button>
+                            </Col>
+                        </Form>
+                     </div>
+                </Row>
+            </Container>
         )
     }
 }

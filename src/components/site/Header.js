@@ -13,12 +13,23 @@ class Header extends Component {
     super(props);
     this.state = { fadeIn: true };
     this.toggle = this.toggle.bind(this);
+  
 }
+
+ toggle() {
+  this.setState({
+      fadeIn: !this.state.fadeIn
+  });
+}
+
   render() {
     return (
       <header>
         <Navbar className="header">
-          <NavbarBrand href="">SLMN</NavbarBrand>
+          <NavbarBrand >
+        
+           <Button type="submit" color="primary" onClick={this.props.logout}> Log Out</Button>
+          </NavbarBrand>
             <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink href="https://github.com/yourhandle/yourrepoforthisapp">Love Track </NavLink>
@@ -35,10 +46,6 @@ class Header extends Component {
       </header>
     );
   }
-  toggle() {
-    this.setState({
-        fadeIn: !this.state.fadeIn
-    });
-}
+
 }
 export default Header;

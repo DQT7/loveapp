@@ -7,92 +7,109 @@ import Sidebar from './components/site/Sidebar';
 import Home from './components/site/Home';
 import AuthModal from './components/site/AuthModals';
 import Resources  from './components/site/Resources';
-import Auth  from './components/site/Auth';
+// import Auth  from './components/site/Auth';
 import Splash from './components/site/Splash';
-import RLissue from './RTracker/RLissues'
+import RLissues from './RTracker/RLissues';
+import FDJournal from './RTracker/FDJournal'
 
 
 
 
 import {
   BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
+ Link,
+ Route,
+ Switch,
 
 } from 'react-router-dom';
-import RLissues from './RTracker/RLissues';
+
 
 class App extends Component {
-constructor(){
-  super();
-  this.state = {
-    sessionToken: ''
+  constructor(){
+    super();
+    this.state = {
+      sessionToken: ''
+    }
+    this.setSessionState = this.setSessionState.bind(this);
+    this.protectedViews = this.protectedViews.bind(this);
+    this.logout = this.logout.bind(this);
+
   }
-this.setSessionState = this.setSessionState.bind(this);
-this.protectedViews = this.protectedViews.bind(this);
-this.logout = this.logout.bind(this);
 
-}
-
-setSessionState(token){
-  localStorage.setItem('token',token);
-  this.setState({sessionToken: token})
-}
-componentWillMount() {
-  const token = localStorage.getItem('token')
-  if(token && !this.state.sessionToken) {
-    this.setState({sessionToken:token});
+  setSessionState(token){
+    localStorage.setItem('token',token);
+    this.setState({sessionToken: token})
   }
-}
-logout(){
-  this.setState({ setToken:''});
-  localStorage.removeItems('token')
-}
-protectedViews(){
-  if(this.state.sessionToken === localStorage.getItem('token')){
-    return (
-      <Router path='/' exact={true}>
-      <Splash sessionToken={this.state.sessionToken} />
-    </Router>
 
-    )
-  } else{
-    return (
-      <Router path="/auth" exact={true} >
-          <Auth setToken={this.setSessionState} />
+  componentWillMount() {
+    const token = localStorage.getItem('token')
+    if(token && !this.state.sessionToken) {
+      this.setState({sessionToken:token});
+    }
+  }
+
+  logout(){
+    this.setState({ setToken:''});
+    localStorage.removeItem('token')
+  }
+
+  protectedViews(){
+    if(this.state.sessionToken === localStorage.getItem('token')){
+      return (
+        <Router>
+        <div>
+          <Header/>
+          <Switch>
+            <Route path="/" exact={true}>
+              <Home/>
+            </Route>
+            <Route exact={true} path='/FDJournal'>
+    
+              <FDJournal />
+    
+            </Route>
+    
+            <Route exact={true} path='/RLissues'>
+              <RLissues/>
+            </Route>
+          </Switch>
+        </div>
         </Router>
-    )
+      );
+
+    } else {
+
+      return (
+
+        <Route path="/AuthModal" exact={true} >
+          
+          <AuthModal setToken={this.setSessionState} />
+        </Route>
+      )
+    }
   }
-}
 
   render() {
     return (
       <Router>
-      <Switch>
-      <div class='inTheback'>
-     
-        <Header />
-      
-         
-            <div>
-            <Sidebar />
-            {this.protectedViews()}
-            </div>
-          
-           <Home/>
-           <AuthModal setToken={this.setSessionState}/>
-           <div>
-          <RLissues/>
-          {this.protectedViews()}
-          </div>
-        <Footer />
+      <div className='inTheback'>
        
+          <div>
+            <Header logout={this.logout} />
+            <div>
+              <Sidebar />
+            </div>
+            <div>
+              {this.protectedViews()}
+            </div>
+            <Footer />
+          </div>
+        
       </div>
-      </Switch>
-        </Router>
+      </Router>
     );
   }
 }
-
+  
 export default App;
+           

@@ -74,12 +74,12 @@ protectedViews(){
      
         <Header />
       
-          <Route>
+         
             <div>
             <Sidebar />
             {this.protectedViews()}
             </div>
-          </Route>
+          
            <Home/>
            <AuthModal setToken={this.setSessionState}/>
            <div>

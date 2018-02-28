@@ -4,17 +4,15 @@ import FDJournal from '../../RTracker/FDJournal'
 import RLissues from '../../RTracker/RLissues';
 import {
   BrowserRouter as Router,
- Link,
- Route,
- Switch,
-
+  Link,
+  Route,
+  Switch,
 } from 'react-router-dom';
 
 
 export default class Sidebar extends React.Component {
   constructor(props) {
     super(props);
-
     this.toggleNavbar = this.toggleNavbar.bind(this);
     this.state = {
       collapsed: true
@@ -26,29 +24,29 @@ export default class Sidebar extends React.Component {
       collapsed: !this.state.collapsed
     });
   }
+
   render() {
     return (
-      
       <div>
-        <Navbar className= "lightwork" color="faded" light >
-        <Link to='/AuthModal'>
-          <NavbarBrand href="/" className="mr-auto">Home </NavbarBrand>
-          </Link>
+        <Navbar className= "lightwork" color="faded" light>
+          <NavbarBrand href="/AuthModal" className="mr-auto">Home</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
             <Nav navbar>
               <NavItem>
-              <Link to='/FDJournal'>  <NavLink>First Date Journal</NavLink></Link>
-               
+                <Link to='/FDJournal'>
+                  First Date Journal
+                </Link>
               </NavItem>
               <NavItem>
-               <Link to='/RLissues'> <NavLink > Relatrionship Issues</NavLink> </Link>
+                <Link to='/RLissues'>
+                  Relationship Issues
+                </Link>
               </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
       </div>
-      
     );
   }
 }

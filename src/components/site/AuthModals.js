@@ -4,7 +4,9 @@ import { Form, FormGroup, Label, Input } from 'reactstrap';
 import RLissues from '../../RTracker/RLissues';
 import FDJournal from '../../RTracker/FDJournal'
 
+import authService from '../../services/auth-service';
 
+// on login, set the token using the auth service
 
 class AuthModal extends React.Component {
   constructor(props) {
@@ -13,7 +15,7 @@ class AuthModal extends React.Component {
     this.state = {
       username: '',
       password: '',
-      modal: false,
+      modal: true,
       signup: false,
       isEmpty:true,
     };
@@ -36,6 +38,7 @@ class AuthModal extends React.Component {
     }).then(
       (response) => response.json()
     ).then((data) => {
+      // use auth service here instead of this.props.setToken
       this.props.setToken(data.sessionToken)
       this.toggle()
 
@@ -58,12 +61,13 @@ class AuthModal extends React.Component {
     }).then(
       (response) => response.json()
     ).then((data) => {
+      // use auth service to set token here too
       this.props.setToken(data.sessionToken)
       this.toggle()
 
 
     })
-  
+
     event.preventDefault()
   }
   validateSignUp(event) {
@@ -133,7 +137,7 @@ class AuthModal extends React.Component {
         <Button color="pink"id="move" onClick={this.toggle}><b>Register Here</b></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader>
-          {mName} 
+          {mName}
           </ModalHeader>
           <ModalBody>
             {this.toggleSignUp()}

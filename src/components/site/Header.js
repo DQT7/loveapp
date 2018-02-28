@@ -13,35 +13,33 @@ class Header extends Component {
     super(props);
     this.state = { fadeIn: true };
     this.toggle = this.toggle.bind(this);
-  
-}
+  }
 
- toggle() {
-  this.setState({
+  toggle() {
+    this.setState({
       fadeIn: !this.state.fadeIn
-  });
-}
+    });
+  }
 
   render() {
     return (
       <header>
         <Navbar className="header">
           <NavbarBrand >
-        
-           <Button type="submit" color="primary" onClick={this.props.logout}> Log Out</Button>
+            <Button type="submit" color="primary" onClick={this.props.logout}>Log Out</Button>
           </NavbarBrand>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="https://github.com/yourhandle/yourrepoforthisapp">Love Track </NavLink>
-              </NavItem>
-              {/* <div>
-                <Button color="primary" onClick={this.toggle}>Click For Love Quote</Button>
-                <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
-                Love 
-                </Fade>
-            </div> */}
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink href="https://github.com/DQT7/loveapp">Love Track</NavLink>
+            </NavItem>
+            {/* <div>
+              <Button color="primary" onClick={this.toggle}>Click For Love Quote</Button>
+              <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
+              Love
+              </Fade>
+          </div> */}
 
-            </Nav>
+          </Nav>
         </Navbar>
       </header>
     );

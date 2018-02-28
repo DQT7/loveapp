@@ -28,20 +28,20 @@ export default class Sidebar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar className= "lightwork" color="faded" light>
-          <NavbarBrand href="/AuthModal" className="mr-auto">Home</NavbarBrand>
+        <Navbar className="lightWork" expand="md" color="faded" light>
+          <NavbarBrand href="/" className="mr-auto">Home</NavbarBrand>
           <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
           <Collapse isOpen={!this.state.collapsed} navbar>
-            <Nav navbar>
+            <Nav className="ml-auto" navbar>
               <NavItem>
-                <Link to='/FDJournal'>
+                <NavLink href='/FDJournal'>
                   First Date Journal
-                </Link>
+                </NavLink>
               </NavItem>
               <NavItem>
-                <Link to='/RLissues'>
+                <NavLink href='/RLissues'>
                   Relationship Issues
-                </Link>
+                </NavLink>
               </NavItem>
             </Nav>
           </Collapse>

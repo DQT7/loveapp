@@ -2,10 +2,8 @@ import React from 'react';
 import { Jumbotron, Button } from 'reactstrap';
 import { Button2, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import styled from 'styled-components';
-// const Wrapper =  styled.div`
 
-// background:red
-// `
+
 class Home extends React.Component {
   constructor(props) {
       super(props);

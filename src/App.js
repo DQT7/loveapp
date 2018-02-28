@@ -39,7 +39,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const token = authService.getToken()
+    const token = authService.getToken();
     if (token && !this.state.sessionToken) {
       this.setState({sessionToken: token});
     }
@@ -51,41 +51,6 @@ class App extends Component {
   }
 
   render() {
-    // let protectedRoutes;
-
-    // if (this.state.sessionToken === localStorage.getItem('token')) {
-    //   console.log('we have a token')
-    //   protectedRoutes = (
-    //     <div>
-    //       <Switch>
-    //         <Route path="/" exact={true}>
-    //           <Home/>
-    //         </Route>
-
-    //         <Route exact={true} path='/FDJournal'>
-    //           <FDJournal />
-    //         </Route>
-
-    //         <Route exact={true} path='/RLissues'>
-    //           <RLissues/>
-    //         </Route>
-    //       </Switch>
-    //     </div>
-    //   );
-    // } else {
-    //   console.log('no token')
-    //   protectedRoutes = (
-    //     <div>
-    //       <Route path="/" exact={true}>
-    //         <Home/>
-    //       </Route>
-    //       <Route path="/AuthModal" exact={true}>
-    //         <AuthModal setToken={this.setSessionState} />
-    //       </Route>
-    //     </div>
-    //   );
-    // }
-
     return (
       <Router>
         <div className='inTheback'>

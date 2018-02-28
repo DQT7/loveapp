@@ -7,7 +7,7 @@ const authService = {
   },
 
   getToken() {
-    localStorage.getItem('token');
+    return localStorage.getItem('token');
   },
 
   setToken(token) {
@@ -20,5 +20,9 @@ const authService = {
     localStorage.removeItem('token');
   }
 };
+
+// lil hacky..
+authService.setToken(authService.getToken());
+
 
 export default authService;

@@ -8,6 +8,9 @@ import {
   NavLink,
 } from 'reactstrap';
 
+import authService from '../../services/auth-service';
+
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +20,7 @@ class Header extends Component {
 
   toggle() {
     this.setState({
-      fadeIn: !this.state.fadeIn
+      fadeIn: !this.state.fadeIn,
     });
   }
 
@@ -26,7 +29,7 @@ class Header extends Component {
       <header>
         <Navbar className="header">
           <NavbarBrand >
-            <Button type="submit" color="primary" onClick={this.props.logout}>Log Out</Button>
+            {authService.isLoggedIn() && <Button type="submit" color="primary" onClick={this.props.logout}>Log Out</Button>}
           </NavbarBrand>
           <Nav className="ml-auto" navbar>
             <NavItem>
@@ -44,6 +47,6 @@ class Header extends Component {
       </header>
     );
   }
-
 }
+
 export default Header;
